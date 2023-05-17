@@ -1,4 +1,5 @@
 #nullable disable
+using Bpmn.Models.Elements;
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
 [Serializable()]
@@ -9,7 +10,7 @@
 public partial class ExtensionElements {
     
     private System.Xml.XmlElement[] anyField;
-    
+    private HaniaType type;
     /// <remarks/>
     [System.Xml.Serialization.XmlAnyElementAttribute()]
     public System.Xml.XmlElement[] Any {
@@ -20,4 +21,18 @@ public partial class ExtensionElements {
             this.anyField = value;
         }
     }
+
+    /// <remarks/>
+    public HaniaType Type
+    {
+        get
+        {
+            return this.type;
+        }
+        set
+        {
+            this.type = value;
+        }
+    }
+
 }

@@ -1,18 +1,38 @@
 ﻿using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
+using Bpmn;
 using Bpmn.Extensions;
 
-var inputString = File.ReadAllText("C:\\Users\\isar\\source\\repos\\BPMN\\Bpmn.Console\\diagram.bpmn");
-var serializer = new XmlSerializer(typeof(Definitions));
-var memStream = new MemoryStream(Encoding.UTF8.GetBytes(inputString));
-
-var definitions = (Definitions)serializer.Deserialize(memStream)!;
-
-var process = definitions.FirstProcess();
-
-var startEvent = process.FirstStartEvent();
-
-var next = process.NextElement(startEvent);
+var instance = new Instance("diagram.bpmn");
 
 
-Console.WriteLine(definitions);
+var processes = instance.AllProcess();
+
+foreach (var process in processes)
+{
+    var start = process.FirstStartEvent();
+
+
+    if (start == null) throw new ArgumentNullException(nameof(start));
+    foreach (var element in start.extensionElements.Any)
+    {
+        for (int nodeIndex = 0; nodeIndex < element.ChildNodes.Count; nodeIndex++)
+        {
+            var item = element.ChildNodes[nodeIndex];
+            for (int attributeIndex = 0; attributeIndex < item.Attributes.Count; attributeIndex++)
+            {
+                Console.WriteLine(item.Attributes[attributeIndex].InnerText);
+            }
+        }
+        
+    }
+    Console.WriteLine(start.id);
+
+}
+
+
+
+
+
+

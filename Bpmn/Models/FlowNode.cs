@@ -1,3 +1,4 @@
+using Bpmn.Models.Elements;
 /// <remarks/>
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(Gateway))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(ParallelGateway))]
@@ -42,7 +43,7 @@ public abstract partial class FlowNode : FlowElement {
     private System.Xml.XmlQualifiedName[] incomingField;
     
     private System.Xml.XmlQualifiedName[] outgoingField;
-    
+
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("incoming")]
     public System.Xml.XmlQualifiedName[] incoming {
@@ -64,4 +65,6 @@ public abstract partial class FlowNode : FlowElement {
             this.outgoingField = value;
         }
     }
+
+   
 }
