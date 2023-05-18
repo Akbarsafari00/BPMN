@@ -56,6 +56,9 @@ namespace Bpmn
                 case ServiceTask:
                     await DoServiceTaskProcess((ServiceTask) CurrentFlowElement);
                     break;
+                case UserTask:
+                    await DoUserTaskProcess((UserTask)CurrentFlowElement);
+                    break;
                 case Gateway:
                     await DoGatewayProcess((Gateway)CurrentFlowElement);
                     break;
@@ -78,7 +81,11 @@ namespace Bpmn
             Status = "Executing";
             Console.WriteLine(serviceTask.id);
         }
-
+        private async System.Threading.Tasks.Task DoUserTaskProcess(UserTask userTask)
+        {
+            Status = "Waiting";
+            Console.WriteLine(userTask.id);
+        }
         private async System.Threading.Tasks.Task DoGatewayProcess(Gateway gateway)
         {
             Status = "Dessiccion";
